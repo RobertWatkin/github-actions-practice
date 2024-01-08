@@ -1,0 +1,4 @@
+This is a text file with some random content in.
+This file is nothing important.
+But the file has multiple lines.
+Which is interesting... I guess.
