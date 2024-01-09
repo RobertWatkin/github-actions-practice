@@ -13,10 +13,12 @@ jobs:
       - name: Create Build Folder
         run: |
           mkdir build
+          touch build/example-file
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: Upload Artifact
+          name: build-artifact # name to reference the artifact
           path: build
         
 
@@ -27,9 +29,10 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
         with:
-          name: Download Artifact
+          name: build-artifact
           # path: build
 
       - name: Print Contents of Artifact
