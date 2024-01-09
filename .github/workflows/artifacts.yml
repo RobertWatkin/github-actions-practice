@@ -1,0 +1,39 @@
+name: Artifacts Download and Upload Practice
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create Build Folder
+        run: |
+          mkdir build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Upload Artifact
+          path: build
+        
+
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Download Artifact
+          # path: build
+
+      - name: Print Contents of Artifact
+        run: |
+          ls -R
+        
+  
